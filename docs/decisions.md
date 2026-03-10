@@ -1,10 +1,17 @@
-Model Choice
+Model Choice:
 
-Dataset Choice
+Dataset Choice: ChartQA
 
-Hyperparameters
+Reason:
+ChartQA evaluates multimodal reasoning by requiring models
+to interpret visual data in charts and answer natural language questions.
 
-Compute constraints
+This aligns well with multimodal SLM capabilities.
+
+Hyperparameters:
+
+Compute constraints:
+
 
 Example:
 The model was selected to ensure compatibility with T4 GPU memory constraints.
