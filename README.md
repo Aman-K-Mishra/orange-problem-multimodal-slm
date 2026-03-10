@@ -6,7 +6,7 @@ This repository contains the implementation for multimodal fine-tuning of a Smal
 
 The goal is to train a model that can understand an image and generate a text response.
 
-Dataset used: **[Dataset Name Here]**
+Dataset used: **[(ChartQA)](https://huggingface.co/datasets/HuggingFaceM4/ChartQA)**
 
 Example tasks:
 
@@ -18,7 +18,7 @@ Example tasks:
 ## Dataset
 
 Dataset Source:
-(Hugging Face link)
+[(ChartQA)](https://huggingface.co/datasets/HuggingFaceM4/ChartQA)
 
 Dataset Columns:
 
