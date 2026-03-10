@@ -1,54 +1,43 @@
-# Multimodal Fine-Tuning with Small Language Models (Orange Problem)
+# Multimodal Fine-Tuning with Small Language Models (ChartQA)
 
 ## Overview
 
-This repository contains the implementation for multimodal fine-tuning of a Small Language Model (SLM) using image-text data.
+This repository implements multimodal fine-tuning of a Small Language Model (SLM) on the ChartQA dataset.
 
-The goal is to train a model that can understand an image and generate a text response.
-
-Dataset used: **[(ChartQA)](https://huggingface.co/datasets/HuggingFaceM4/ChartQA)**
-
-Example tasks:
-
-* Chart question answering
-* Image caption generation
+The task is **chart question answering**.
+Given a chart image and a natural language question, the model predicts the answer.
 
 ---
 
 ## Dataset
 
-Dataset Source:
-[(ChartQA)](https://huggingface.co/datasets/HuggingFaceM4/ChartQA)
+Dataset: https://huggingface.co/datasets/HuggingFaceM4/ChartQA
 
-Dataset Columns:
+The dataset contains:
 
-For ChartQA:
+* `image` — chart image
+* `query` — question about the chart
+* `label` — correct answer
 
-* `image`
-* `query`
-* `label`
+Example task:
 
-For RICO-Screen2Words:
-
-* `image`
-* `caption`
+Image: bar chart
+Query: "What is the highest value?"
+Answer: "45"
 
 ---
 
 ## Model
 
-Base Model: `[Model Name]`
+Base model: `[MODEL_NAME]`
 
 Example options:
 
 * SmolVLM
-* Phi-3 Vision
 * LLaVA
+* Phi-3 Vision
 
-Reason for selection:
-
-* Small enough to run on **T4 GPU**
-* Supports **multimodal inputs**
+The model is selected to ensure it can run on **T4 GPU compute**.
 
 ---
 
@@ -57,8 +46,8 @@ Reason for selection:
 Clone the repository:
 
 ```
-git clone https://github.com/yourusername/orange-problem-multimodal-slm.git
-cd orange-problem-multimodal-slm
+git clone https://github.com/YOUR_USERNAME/orange-chartqa-slm.git
+cd orange-chartqa-slm
 ```
 
 Install dependencies:
@@ -71,13 +60,13 @@ pip install -r requirements.txt
 
 ## Training
 
-Run the training script:
+Run training:
 
 ```
 python train.py
 ```
 
-Training configuration is stored in:
+Training parameters are defined in:
 
 ```
 configs/training_config.yaml
@@ -85,12 +74,12 @@ configs/training_config.yaml
 
 ---
 
-## Model Upload
+## Hugging Face Model
 
-The trained model or LoRA adapters are uploaded to Hugging Face:
+Trained model or LoRA adapters:
 
 ```
-HuggingFace Model Link
+https://huggingface.co/YOUR_USERNAME/YOUR_MODEL
 ```
 
 ---
@@ -103,15 +92,17 @@ Example:
 from transformers import AutoProcessor, AutoModelForCausalLM
 from PIL import Image
 
-model_id = "username/model-name"
+model_id = "YOUR_USERNAME/YOUR_MODEL"
 
-model = AutoModelForCausalLM.from_pretrained(model_id)
 processor = AutoProcessor.from_pretrained(model_id)
+model = AutoModelForCausalLM.from_pretrained(model_id)
 
-image = Image.open("example.png")
+image = Image.open("example_chart.png")
+
+question = "What is the highest value in the chart?"
 
 inputs = processor(
-    text="Describe this image",
+    text=question,
     images=image,
     return_tensors="pt"
 )
@@ -126,21 +117,21 @@ print(processor.decode(output[0]))
 ## Repository Structure
 
 ```
-train.py            # model fine-tuning
-inference.py        # inference script
-requirements.txt    # dependencies
-configs/            # training configs
-docs/               # design decisions
-examples/           # inference examples
+README.md
+train.py
+inference.py
+requirements.txt
+configs/training_config.yaml
+docs/decisions.md
 ```
 
 ---
 
 ## Hardware
 
-Training and inference were designed to run on **NVIDIA T4 GPU**.
+Training and inference are designed to run on **NVIDIA T4 GPU**.
 
-Platforms used:
+Possible platforms:
 
 * Google Colab
 * Kaggle
