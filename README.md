@@ -9,6 +9,27 @@ Given a chart image and a natural language question, the model predicts the answ
 
 ---
 
+## Pipeline Overview
+
+The project follows a three-stage pipeline:
+
+1. **Data Exploration & Preprocessing**
+   - Load the ChartQA dataset
+   - Visualize chart images and question–answer pairs
+   - Resize images and format prompts for multimodal training
+
+2. **Model Fine-Tuning**
+   - Load the base vision-language model
+   - Apply LoRA adapters for efficient fine-tuning
+   - Train on the ChartQA dataset
+
+3. **Evaluation & Inference**
+   - Evaluate the model on validation/test splits
+   - Run inference on chart images
+   - Generate answers to chart-related questions
+  
+---
+
 ## Dataset
 
 Dataset: https://huggingface.co/datasets/HuggingFaceM4/ChartQA
@@ -31,6 +52,36 @@ notebooks/01_data_exploration_preprocessing.ipynb
 ```
 
 This notebook loads the dataset, visualizes chart examples, and prepares the image-text inputs for model training.
+
+---
+
+## Preprocessing Decisions
+
+Several preprocessing steps are applied before training:
+
+**Image Resizing**
+
+Chart images are resized to **448 × 448 pixels** to match the input requirements of the vision-language model.
+
+**Prompt Formatting**
+
+Each dataset example is formatted as:
+
+Question: <query>  
+Answer: <label>
+
+This structure aligns with instruction-tuned multimodal models and helps the model learn to generate answers to chart questions.
+
+**Dataset Columns Used**
+
+The dataset includes the following columns:
+
+- image
+- query
+- label
+- human_or_machine
+
+Only **image**, **query**, and **label** are used for training.
 
 ---
 
