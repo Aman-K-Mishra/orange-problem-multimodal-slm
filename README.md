@@ -16,7 +16,7 @@ This repository implements multimodal fine-tuning of a Small Language Model (SLM
 **Task:** Chart Question Answering — given a chart image and a natural language question, the model predicts the answer.
 
 **Model:** [Qwen2-VL-2B-Instruct](https://huggingface.co/Qwen/Qwen2-VL-2B-Instruct) fine-tuned with LoRA adapters  
-**Fine-tuned Model on HuggingFace:** [preethamvj/chart-vision-qwen](aaronmat1905/Qwen2VL-finetuned-chartqa)  
+**Fine-tuned Model on HuggingFace:** [aaronmat1905/Qwen2VL-finetuned-chartqa](https://huggingface.co/aaronmat1905/Qwen2VL-finetuned-chartqa)  
 **Processed Dataset:** [aaronmat1905/chartqa-processed](https://huggingface.co/datasets/aaronmat1905/chartqa-processed)
 
 ---
